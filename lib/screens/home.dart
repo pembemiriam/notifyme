@@ -37,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-     _homeBloc = BlocProvider.of<HomeBloc>(context);
+    _homeBloc = BlocProvider.of<HomeBloc>(context);
 
     return BlocBuilder<HomeBloc, HomeState>(
       bloc: _homeBloc,
@@ -46,14 +46,14 @@ class _HomeScreenState extends State<HomeScreen> {
           appBar: AppBar(
             backgroundColor: Colors.white,
             title: ListTile(
-             trailing: FlatButton(
-               onPressed: () async{
-                 Navigator.pop(context);
-                 ParseUser user = await ParseUser.currentUser();
-                 var result = await user.logout();
-                 return result.success;
-               },
-                 child: Text("Logout")),
+              trailing: FlatButton(
+                  onPressed: () async{
+                    Navigator.pop(context);
+                    ParseUser user = await ParseUser.currentUser();
+                    var result = await user.logout();
+                    return result.success;
+                  },
+                  child: Text("Logout")),
             ),
             elevation: 0.5,
           ),

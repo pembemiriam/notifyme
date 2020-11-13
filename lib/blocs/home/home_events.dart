@@ -33,3 +33,13 @@ class NewMessageAdded extends HomeEvent {
   String toString() => 'NewMessageAdded { message: ${message.toString()}}';
 
 }
+
+class LogoutButtonPressed extends HomeEvent {
+
+
+  LogoutButtonPressed() : super();
+
+  @override
+  String toString() => 'LogoutButtonPressed {}';
+
+}

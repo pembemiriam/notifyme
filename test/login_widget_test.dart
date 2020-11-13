@@ -28,8 +28,8 @@ void main() async {
     await tester.pumpWidget(makeWidgetTestable(child: screen, loginBloc: _loginBloc));
 
     _loginBloc.dispatch(LoginButtonPressed(
-      username: 'trongdth',
-      email: 'trongdth@gmail.com',
+      username: 'pembe',
+      email: 'pembe@gmail.com',
       password: '123456'
     ));
 

@@ -5,10 +5,10 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   test('test email valid returns true', () {
     /* 
-      input: trongdth@gmail.com
+      input: pembe@gmail.com
       expected: true
     */
-    var email = 'trongdth@gmail.com';
+    var email = 'pembe@gmail.com';
     var actual = Utils.isValidEmail(email);
     var expected = true;
     expect(actual, expected);

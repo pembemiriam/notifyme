@@ -1,13 +1,20 @@
 import 'package:bloc/bloc.dart';
+import 'package:notifytest/blocs/auth/auth_bloc.dart';
+import 'package:notifytest/blocs/auth/auth_events.dart';
 import 'package:notifytest/blocs/home/home_events.dart';
 import 'package:notifytest/blocs/home/home_states.dart';
 import 'package:notifytest/data/models/message.dart';
 import 'package:notifytest/repositories/message_repos.dart';
+import 'package:notifytest/repositories/user_repos.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final MessageRepository messageRepository;
+  final BaseUserRepository userRepository;
+  final AuthBloc authBloc;
 
-  HomeBloc({this.messageRepository}) : assert(messageRepository != null);
+
+  HomeBloc({this.messageRepository, this.userRepository, this.authBloc}) : assert
+  (messageRepository != null);
 
   @override
   HomeState get initialState => HomeLoading();
@@ -41,6 +48,22 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         
       } catch (error) {
         yield Failure(error: error.toString());
+      }
+    }
+
+    if (event is LogoutButtonPressed) {
+      yield LogoutLoading();
+      try {
+        final user = await userRepository.logout();
+
+        if (user == true) {
+          authBloc.dispatch(LoggedOut());
+        } else {
+          yield LogoutFailure(error: 'Logout Failed');
+        }
+
+      } catch (error) {
+        yield LogoutFailure(error: error.toString());
       }
     }
 

@@ -33,3 +33,22 @@ class SendMessageSuccess extends HomeState {
   @override
   String toString() => 'SendMessageSuccess';
 }
+
+class LogoutInitial extends HomeState {
+  @override
+  String toString() => 'LogoutInitial';
+}
+
+class LogoutLoading extends HomeState {
+  @override
+  String toString() => 'LogoutLoading';
+}
+
+class LogoutFailure extends HomeState {
+  final String error;
+
+  LogoutFailure({@required this.error}) : super([error]);
+
+  @override
+  String toString() => 'LogoutFailure { error: $error }';
+}
